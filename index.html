@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sketchify</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h2>sketchify</h2>
+    <div class="toolbar">
+      <select id="tool">
+        <option value="brush">Brush</option>
+        <option value="line">Line</option>
+        <option value="rect">Rectangle</option>
+        <option value="circle">Circle</option>
+        <option value="triangle">Triangle</option>
+        <option value="dashed">Dashed Line</option>
+        <option value="select">Select/Move</option>
+      </select>
+      <button id="undo">Undo</button>
+      <button id="clear">Clear</button>
+      <button id="save">Save PNG</button>
+      <input type="color" id="color" value="#000000" />
+      <input type="range" id="size" min="1" max="20" value="3" />
+    </div>
+
+    <canvas id="canvas" width="900" height="600"></canvas>
+    <footer
+      style="
+        margin-top: 20px;
+        padding: 10px;
+        text-align: center;
+        color: #222;
+        font-size: 14px;
+        font-family: sans-serif;
+      "
+    >
+      A simple sketching app. Created by Mudabbir and Maria.
+    </footer>
+    <script src="main.js"></script>
+  </body>
+</html>

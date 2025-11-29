@@ -1,0 +1,60 @@
+body {
+  background: #f2f2f2;
+  font-family: Poppins, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 1.5rem;
+}
+
+.toolbar {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  width: 95%;
+  max-width: 950px;
+}
+
+button,
+select,
+input[type="color"],
+input[type="range"] {
+  padding: 6px;
+  font-size: 14px;
+  flex: 1 0 auto;
+  min-width: 60px;
+}
+
+canvas {
+  border: 2px solid #222;
+  margin-top: 10px;
+  cursor: crosshair;
+  width: 95%;
+  max-width: 950px;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 1.2rem;
+  }
+  .toolbar {
+    gap: 5px;
+  }
+  button,
+  select,
+  input[type="color"],
+  input[type="range"] {
+    font-size: 12px;
+    padding: 4px;
+  }
+}
