@@ -5,58 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>sketchify</title>
     <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+    <link rel="apple-touch-icon" href="favicon.png" />
   </head>
   <body>
     <div class="container">
-    <h1>✨ Sketchify Pro</h1>
-    
-    <div class="toolbar">
-      <div class="tool-group">
-        <label>Tool</label>
-        <select id="tool">
-          <option value="brush">🖌️ Brush</option>
-          <option value="line">📏 Line</option>
-          <option value="rect">⬜ Rectangle</option>
-          <option value="circle">⭕ Circle</option>
-          <option value="triangle">🔺 Triangle</option>
-          <option value="dashed">➖ Dashed</option>
-          <option value="eraser">🧹 Eraser</option>
-          <option value="select">👆 Select</option>
-        </select>
+      <h1>✨ Sketchify Pro</h1>
+
+      <div class="toolbar">
+        <div class="tool-group">
+          <label>Tool</label>
+          <select id="tool">
+            <option value="brush">🖌️ Brush</option>
+            <option value="line">📏 Line</option>
+            <option value="rect">⬜ Rectangle</option>
+            <option value="circle">⭕ Circle</option>
+            <option value="triangle">🔺 Triangle</option>
+            <option value="polygon">🔷 Polygon</option>
+            <option value="dashed">➖ Dashed</option>
+            <option value="eraser">🧹 Eraser</option>
+            <option value="select">👆 Select</option>
+          </select>
+        </div>
+
+        <div class="tool-group" id="polygonSettings" style="display: none">
+          <label>Polygon Sides</label>
+          <input type="number" id="polygonSides" min="3" max="12" value="5" />
+        </div>
+
+        <div class="tool-group">
+          <label>Color</label>
+          <input type="color" id="color" value="#000000" />
+        </div>
+
+        <div class="tool-group">
+          <label
+            >Size: <span class="size-display" id="sizeDisplay">3</span>px</label
+          >
+          <input type="range" id="size" min="1" max="50" value="3" />
+        </div>
+
+        <button id="undo">↶ Undo</button>
+        <button id="redo">↷ Redo</button>
+        <button id="clear">🗑️ Clear</button>
+        <button id="save">💾 Save</button>
       </div>
-      
-      <div class="tool-group">
-        <label>Color</label>
-        <input type="color" id="color" value="#000000">
+
+      <div class="canvas-wrapper">
+        <canvas id="canvas" width="900" height="600"></canvas>
       </div>
-      
-      <div class="tool-group">
-        <label>Size: <span class="size-display" id="sizeDisplay">3</span>px</label>
-        <input type="range" id="size" min="1" max="50" value="3">
+
+      <div class="history-info">
+        Shapes: <span id="shapeCount">0</span> | Can Undo:
+        <span id="undoCount">0</span> | Can Redo: <span id="redoCount">0</span>
       </div>
-      
-      <button id="undo">↶ Undo</button>
-      <button id="redo">↷ Redo</button>
-      <button id="clear">🗑️ Clear</button>
-      <button id="save">💾 Save</button>
     </div>
-    
-    <div class="canvas-wrapper">
-      <canvas id="canvas" width="900" height="600"></canvas>
-    </div>
-    
-    <div class="history-info">
-      Shapes: <span id="shapeCount">0</span> | 
-      Can Undo: <span id="undoCount">0</span> | 
-      Can Redo: <span id="redoCount">0</span>
-    </div>
-  </div>
-  
-  <footer>
-    A powerful sketching app. Created by Mudabbir and Maria.
-  </footer>
+
+    <footer>A powerful sketching app. Created by Mudabbir and Maria.</footer>
     <script type="module" src="main.js"></script>
   </body>
 </html>

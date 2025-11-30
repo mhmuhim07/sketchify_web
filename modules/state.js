@@ -13,6 +13,7 @@ export const state = {
   selectionRect: null,
   moving: false,
   moveStart: null,
+  polygonSides: 5,
 
   // Reset drawing state
   resetDrawingState() {
@@ -24,5 +25,5 @@ export const state = {
   resetSelection() {
     this.selectedShapes = [];
     this.selectionRect = null;
-  }
+  },
 };
