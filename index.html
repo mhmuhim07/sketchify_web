@@ -7,37 +7,54 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h2>sketchify</h2>
+    <div class="container">
+    <h1>✨ Sketchify Pro</h1>
+    
     <div class="toolbar">
-      <select id="tool">
-        <option value="brush">Brush</option>
-        <option value="line">Line</option>
-        <option value="rect">Rectangle</option>
-        <option value="circle">Circle</option>
-        <option value="triangle">Triangle</option>
-        <option value="dashed">Dashed Line</option>
-        <option value="select">Select/Move</option>
-      </select>
-      <button id="undo">Undo</button>
-      <button id="clear">Clear</button>
-      <button id="save">Save PNG</button>
-      <input type="color" id="color" value="#000000" />
-      <input type="range" id="size" min="1" max="20" value="3" />
+      <div class="tool-group">
+        <label>Tool</label>
+        <select id="tool">
+          <option value="brush">🖌️ Brush</option>
+          <option value="line">📏 Line</option>
+          <option value="rect">⬜ Rectangle</option>
+          <option value="circle">⭕ Circle</option>
+          <option value="triangle">🔺 Triangle</option>
+          <option value="dashed">➖ Dashed</option>
+          <option value="eraser">🧹 Eraser</option>
+          <option value="select">👆 Select</option>
+        </select>
+      </div>
+      
+      <div class="tool-group">
+        <label>Color</label>
+        <input type="color" id="color" value="#000000">
+      </div>
+      
+      <div class="tool-group">
+        <label>Size: <span class="size-display" id="sizeDisplay">3</span>px</label>
+        <input type="range" id="size" min="1" max="50" value="3">
+      </div>
+      
+      <button id="undo">↶ Undo</button>
+      <button id="redo">↷ Redo</button>
+      <button id="clear">🗑️ Clear</button>
+      <button id="save">💾 Save</button>
     </div>
-
-    <canvas id="canvas" width="900" height="600"></canvas>
-    <footer
-      style="
-        margin-top: 20px;
-        padding: 10px;
-        text-align: center;
-        color: #222;
-        font-size: 14px;
-        font-family: sans-serif;
-      "
-    >
-      A simple sketching app. Created by Mudabbir and Maria.
-    </footer>
+    
+    <div class="canvas-wrapper">
+      <canvas id="canvas" width="900" height="600"></canvas>
+    </div>
+    
+    <div class="history-info">
+      Shapes: <span id="shapeCount">0</span> | 
+      Can Undo: <span id="undoCount">0</span> | 
+      Can Redo: <span id="redoCount">0</span>
+    </div>
+  </div>
+  
+  <footer>
+    A powerful sketching app. Created by Mudabbir and Maria.
+  </footer>
     <script src="main.js"></script>
   </body>
 </html>
