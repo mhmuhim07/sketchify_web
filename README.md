@@ -33,9 +33,3 @@ Developer notes
   - `shapes.js` — shape utilities
   - `fileExport.js`, `eraser.js`, `keyboard.js`, `ui.js` — helpers
 - Polygon tool: select `Polygon`, set sides (3–12), click to set center and drag to set radius; release to create the polygon.
-
-If you want additional README details (contributing, tests, license, screenshots), tell me what to include and I will add them.
-
----
-
-Created/updated by project maintainer tooling.
