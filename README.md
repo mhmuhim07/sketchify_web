@@ -1,8 +1,8 @@
 # Sketchify
 
-> A small, browser-based sketching app with tools for freehand drawing, shapes, selection, erasing and exporting.
+> Browser-based sketching app with tools for freehand drawing, shapes, selection, erasing and exporting.
 
-Sketchify is a lightweight HTML/CSS/JS drawing application organized into modular JavaScript files under `modules/`.
+Sketchify is a lightweight drawing application.
 
 Key features
 
