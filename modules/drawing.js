@@ -2,7 +2,7 @@
 export const drawing = {
   redraw(ctx, shapes) {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    shapes.forEach(s => drawing.drawShape(ctx, s));
+    shapes.forEach((s) => drawing.drawShape(ctx, s));
   },
 
   drawShape(ctx, s) {
@@ -11,7 +11,7 @@ export const drawing = {
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
     ctx.beginPath();
-    
+
     if (s.type === "brush") {
       if (s.points.length < 2) return;
       ctx.moveTo(s.points[0].x, s.points[0].y);
@@ -32,6 +32,19 @@ export const drawing = {
       ctx.lineTo((s.x1 + s.x2) / 2, s.y1);
       ctx.lineTo(s.x2, s.y2);
       ctx.closePath();
+    } else if (s.type === "polygon") {
+      const sides = s.sides || 3;
+      const r = Math.hypot(s.x2 - s.x1, s.y2 - s.y1);
+      const cx = s.x1;
+      const cy = s.y1;
+      let startAngle = -Math.PI / 2; // start at top
+      if (sides <= 0) return;
+      ctx.moveTo(cx + r * Math.cos(startAngle), cy + r * Math.sin(startAngle));
+      for (let i = 1; i < sides; i++) {
+        const a = startAngle + (i * 2 * Math.PI) / sides;
+        ctx.lineTo(cx + r * Math.cos(a), cy + r * Math.sin(a));
+      }
+      ctx.closePath();
     } else if (s.type === "dashed") {
       ctx.setLineDash([10, 5]);
       ctx.moveTo(s.x1, s.y1);
@@ -43,7 +56,7 @@ export const drawing = {
     ctx.stroke();
   },
 
-  drawShapePreview(ctx, type, x1, y1, x2, y2, color, size) {
+  drawShapePreview(ctx, type, x1, y1, x2, y2, color, size, sidesParam) {
     ctx.globalAlpha = 0.7;
     ctx.setLineDash(type === "dashed" ? [10, 5] : []);
     ctx.strokeStyle = color;
@@ -51,7 +64,7 @@ export const drawing = {
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
     ctx.beginPath();
-    
+
     if (type === "line" || type === "dashed") {
       ctx.moveTo(x1, y1);
       ctx.lineTo(x2, y2);
@@ -66,6 +79,19 @@ export const drawing = {
       ctx.moveTo(x1, y2);
       ctx.lineTo((x1 + x2) / 2, y1);
       ctx.lineTo(x2, y2);
+      ctx.closePath();
+      ctx.stroke();
+    } else if (type === "polygon") {
+      const sides = parseInt(sidesParam, 10) || 3; // fallback if passed
+      const r = Math.hypot(x2 - x1, y2 - y1);
+      const cx = x1;
+      const cy = y1;
+      let startAngle = -Math.PI / 2;
+      ctx.moveTo(cx + r * Math.cos(startAngle), cy + r * Math.sin(startAngle));
+      for (let i = 1; i < sides; i++) {
+        const a = startAngle + (i * 2 * Math.PI) / sides;
+        ctx.lineTo(cx + r * Math.cos(a), cy + r * Math.sin(a));
+      }
       ctx.closePath();
       ctx.stroke();
     }
@@ -105,14 +131,14 @@ export const drawing = {
   drawBoundingBox(ctx, selectedShapes, getBoundingBoxFn) {
     if (!selectedShapes.length) return;
     const boxes = selectedShapes.map(getBoundingBoxFn);
-    const x1 = Math.min(...boxes.map(b => b.x1));
-    const y1 = Math.min(...boxes.map(b => b.y1));
-    const x2 = Math.max(...boxes.map(b => b.x2));
-    const y2 = Math.max(...boxes.map(b => b.y2));
+    const x1 = Math.min(...boxes.map((b) => b.x1));
+    const y1 = Math.min(...boxes.map((b) => b.y1));
+    const x2 = Math.max(...boxes.map((b) => b.x2));
+    const y2 = Math.max(...boxes.map((b) => b.y2));
     ctx.setLineDash([8, 4]);
     ctx.strokeStyle = "#667eea";
     ctx.lineWidth = 2;
     ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
     ctx.setLineDash([]);
-  }
+  },
 };
